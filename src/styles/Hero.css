@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400|Poppins:300,400,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap");
+
+body {
+  background-color: #010;
+}
+
+.dm-serif-text {
+  font-family: "DM Serif", serif;
+}
+
+.font-climate-crisis {
+  font-family: "Climate Crisis", serif;
+}
+
+.gif-text {
+  background-image: url("https://media.giphy.com/media/l396ISDU0oS6gDIUU/giphy.gif?cid=790b761149995c591c31c5259253aabc6a1c1482edec3b9b&ep=v1_user_favorites&rid=giphy.gif&ct=g");
+  background-size: cover;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-transform: uppercase;
+}
+
+.role {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin-top: -10px;
+}
+
+.block {
+  width: 0%;
+  height: 100%;
+  background: #e91e63;
+  position: absolute;
+  animation: secBlock 2s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
+  animation-delay: 2s;
+}
+
+.text {
+  animation: secFadeIn 2s forwards;
+  animation-delay: 3.2s;
+  opacity: 0;
+  font-weight: 400;
+  font-family: "Lato", sans-serif;
+  color: #ffffff;
+  font-size: 24px; /* Increased font size */
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+/* Keyframes */
+@keyframes secBlock {
+  0% {
+    width: 0%;
+    left: 0;
+  }
+  50% {
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    width: 0;
+    left: 100%;
+  }
+}
+
+@keyframes secFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
