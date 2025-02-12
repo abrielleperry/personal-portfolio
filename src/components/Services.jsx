@@ -1,6 +1,24 @@
 import React from "react";
-
 import servicesData from "../servicesData.json";
+import Devices from "@mui/icons-material/Devices";
+import Storage from "@mui/icons-material/Devices";
+import DatasetLinked from "@mui/icons-material/DatasetLinked";
+import Api from "@mui/icons-material/Api";
+import Speed from "@mui/icons-material/Speed";
+import Brush from "@mui/icons-material/Brush";
+import TrendingUp from "@mui/icons-material/TrendingUp";
+import Security from "@mui/icons-material/Security";
+
+const iconMapping = {
+  Devices: <Devices />,
+  Storage: <Storage />,
+  DatasetLinked: <DatasetLinked />,
+  Api: <Api />,
+  Speed: <Speed />,
+  Brush: <Brush />,
+  TrendingUp: <TrendingUp />,
+  Security: <Security />,
+};
 
 export default function Services() {
   return (
@@ -17,7 +35,10 @@ export default function Services() {
             {servicesData.map((service, index) => {
               return (
                 <div key={index} className="service-item text-center">
-                  <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900"></div>
+                  <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
+                    {" "}
+                    {iconMapping[service.icon]}
+                  </div>
                   <h3 className="mb-2 text-lg font-bold dark:text-white">
                     {service.title}
                   </h3>
