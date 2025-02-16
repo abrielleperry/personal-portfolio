@@ -1,6 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
 import Hero from "./Hero";
 import AboutMe from "./AboutMe";
 import Services from "./Services";
@@ -18,48 +16,13 @@ const sections = [
 ];
 
 export default function Page() {
-  const [current, setCurrent] = useState(0);
-  const isScrolling = useRef(false); // Ref to control scroll throttling
-
-  const handleScroll = (event) => {
-    if (isScrolling.current) return; // Prevent multiple scrolls during transition
-
-    isScrolling.current = true;
-
-    if (event.deltaY > 0 && current < sections.length - 1) {
-      setCurrent((prev) => prev + 1);
-    } else if (event.deltaY < 0 && current > 0) {
-      setCurrent((prev) => prev - 1);
-    }
-
-    // Set timeout to allow scrolling again after the transition ends
-    setTimeout(() => {
-      isScrolling.current = false;
-    }, 1500); // Matches the transition duration
-  };
-
-  useEffect(() => {
-    window.addEventListener("wheel", handleScroll);
-    return () => window.removeEventListener("wheel", handleScroll);
-  }, [current]);
-
   return (
-    <div className="h-screen w-full overflow-hidden">
-      <motion.div
-        animate={{ y: `-${current * 100}vh` }}
-        transition={{ duration: 2.5, ease: "easeInOut" }} // Slower scroll transition
-        className="h-full"
-      >
-        {sections.map((section, index) => (
-          <div key={section.id} className="h-screen">
-            {section.id === "Stats" ? (
-              <Stats isActive={current === index} />
-            ) : (
-              section.component
-            )}
-          </div>
-        ))}
-      </motion.div>
+    <div className="w-full overflow-y-auto">
+      {sections.map((section) => (
+        <div key={section.id} className="min-h-screen">
+          {section.component}
+        </div>
+      ))}
     </div>
   );
 }

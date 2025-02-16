@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Resume() {
   return (
-    <div className="flex flex-col md:flex-row h-full p-8 gap-8">
+    <div className="bg-white flex flex-col md:flex-row min-h-screen p-8 gap-8">
       {/* Left Section: Text */}
       <div className="w-full md:w-1/4 flex flex-col items-start">
         <h2 className="font-publicSans uppercase text-lg font-semibold tracking-widest mb-4">

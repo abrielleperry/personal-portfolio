@@ -1,15 +1,23 @@
 import React, { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
+import "../styles/aboutMe.css";
 
 export function IphoneModel() {
   const { scene } = useGLTF("/iphone.glb"); // Path from public folder
-  const modelRef = useRef(null); // No need for TypeScript types
+  const modelRef = useRef(null);
+  const timeRef = useRef(0); // Track elapsed time
 
-  // Rotate the model continuously
-  useFrame(() => {
+  useFrame((_, delta) => {
     if (modelRef.current) {
-      modelRef.current.rotation.y += 0.01; // Adjust speed if needed
+      timeRef.current += delta;
+
+      // Adjust X and Y rotation to face correctly
+      modelRef.current.rotation.x = Math.PI / 11; // Rotate 90 degrees on X-axis
+      modelRef.current.rotation.y = Math.PI / 0.77; // Rotate 90 degrees on Y-axis
+
+      // Apply hovering effect (smooth up and down motion)
+      modelRef.current.position.y = Math.sin(timeRef.current * 2) * 0.2;
     }
   });
 
@@ -18,10 +26,11 @@ export function IphoneModel() {
 
 export default function AboutMe() {
   return (
-    <div className="flex flex-row h-screen bg-white text-black">
+    <div className="flex flex-row min-h-screen bg-white text-black p-8">
       <div className="flex-1">
         <Canvas>
-          <ambientLight intensity={1} />
+          <pointLight position={[10, 10, 10]} intensity={1.5} />
+          <ambientLight intensity={2} />
           <directionalLight position={[5, 5, 5]} />
           <IphoneModel />
           <OrbitControls
@@ -31,52 +40,7 @@ export default function AboutMe() {
           />
         </Canvas>
       </div>
-      <div className="flex-1 rounded-full">
-        <a
-          href="#"
-          className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-        >
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Name
-          </h5>
-          <p className="font-normal text-gray-700 dark:text-gray-400">
-            Abrielle Perry
-          </p>
-
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Education
-          </h5>
-          <p className="font-normal text-gray-700 dark:text-gray-400">
-            Computer Science and Full Stack Web Development
-          </p>
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Email
-          </h5>
-          <p className="font-normal text-gray-700 dark:text-gray-400">
-            abrielleperry22@icloud.com
-          </p>
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Phone
-          </h5>
-          <p className="font-normal text-gray-700 dark:text-gray-400">
-            918-728-5419
-          </p>
-        </a>
-
-        <p className="font-normal text-black">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro,
-          dolorem error quia natus, vitae provident sed quam laudantium facilis
-          consequuntur eius maxime sunt quos libero. Amet reprehenderit
-          necessitatibus qui tenetur! Lorem, ipsum dolor sit amet consectetur
-          adipisicing elit. Excepturi, porro in facere totam nulla placeat quod,
-          vel aliquid eum corporis sunt! Molestiae tempore, cupiditate eaque
-          explicabo fugit voluptas optio non. Lorem, ipsum dolor sit amet
-          consectetur adipisicing elit. Obcaecati accusamus ea cupiditate amet
-          aperiam nostrum, quos quam quis ducimus facere provident saepe
-          impedit! Consectetur delectus necessitatibus nostrum fugit incidunt
-          nobis.
-        </p>
-      </div>
+      <div className=""></div>
     </div>
   );
 }

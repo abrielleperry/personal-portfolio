@@ -4,9 +4,11 @@ import HomePage from "./Page";
 
 function App() {
   return (
-    <div className="h-full flex justify-between min-h-screen bg-neutral-50 dark:bg-zinc-950">
+    <div className="h-screen flex justify-between min-h-screen dark:bg-zinc-950">
       <Sidebar />
-      <HomePage />
+      <div className="flex-1 overflow-y-auto">
+        <HomePage />
+      </div>
     </div>
   );
 }

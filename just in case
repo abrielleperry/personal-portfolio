@@ -1,0 +1,11 @@
+  <div className="paper pink flex flex-row text-base">
+          <div className="tape-section"></div>
+
+          <p>About me outside of tech</p>
+
+          <div className="tape-section"></div>
+        </div>
+        <div className="paper blue text-base">
+          <div className="top-tape"></div>
+          <p>My story in tech</p>
+        </div>

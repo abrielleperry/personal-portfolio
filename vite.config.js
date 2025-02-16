@@ -13,6 +13,10 @@ export default defineConfig({
     postcss: {
       plugins: [tailwindcss, autoprefixer],
     },
+    modules: {
+      scopeBehaviour: "local", // Ensures styles are scoped
+      localsConvention: "camelCaseOnly", // Optional: Ensures camelCase class names
+    },
   },
   server: {
     port: 3000, // Change to your preferred port
